@@ -3,7 +3,8 @@ const lightTheme = {
     background1: 'white',
     aboutPageBackground: 'teal',
     buttonBackground1: 'black',
-    text1: 'white', 
+    buttonText1: 'white',
+    text1: 'black', 
     link1: 'dodgerblue'
   }
 }

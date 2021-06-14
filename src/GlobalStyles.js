@@ -17,6 +17,11 @@ const GlobalStyles = createGlobalStyle`
       }
     `
   }}
+
+  button {
+    outline: none;
+    border: none;
+  }
 `
 
 export default GlobalStyles

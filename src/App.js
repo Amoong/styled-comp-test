@@ -1,5 +1,5 @@
 import { useState } from 'react' 
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import GlobalStyles from './GlobalStyles'
 
@@ -11,15 +11,38 @@ import AboutPage from './pages/AboutPage'
 import MainPage from './pages/MainPage'
 
 const ThemeButton = styled.button`
-  width: 100px;
   height: 50px;
   font-size: 20px;
-  background: black;
+  margin-bottom: 20px;
+  
+  ${({ theme, size }) => {
+    const { colors: { buttonBackground1, buttonText1 } } = theme
+    let width;
+    switch (size) {
+      case 'small':
+        width = '50px'
+        break
+      case 'medium':
+        width = '100px'
+        break
+      case 'big':
+      default:
+        width = '150px'
+        break
+    }
+
+    return css`
+      width: ${width};
+      color: ${buttonText1};
+      background-color: ${buttonBackground1};
+    `
+  }}
 `
 
 const Title = styled.h1`
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 20px;
 `
 
 function App() {
@@ -29,7 +52,7 @@ function App() {
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyles />
       <Title>styled-component</Title>
-      <ThemeButton onClick={() => setIsDarkTheme(!isDarkTheme)}>{isDarkTheme ? '🌙' : '☀️'}</ThemeButton>
+      <ThemeButton size="small" onClick={() => setIsDarkTheme(!isDarkTheme)}>{isDarkTheme ? '🌙' : '☀️'}</ThemeButton>
       <Router>
         <Nav />
         <Switch>
