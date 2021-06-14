@@ -2,8 +2,8 @@ const lightTheme = {
   colors: {
     background1: 'white',
     aboutPageBackground: 'teal',
-    buttonBackground1: '#aaaaaa',
-    text1: 'black', 
+    buttonBackground1: 'black',
+    text1: 'white', 
     link1: 'dodgerblue'
   }
 }

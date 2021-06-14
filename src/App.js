@@ -1,6 +1,7 @@
 import { useState } from 'react' 
 import styled, { ThemeProvider } from 'styled-components'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import GlobalStyles from './GlobalStyles'
 
 import darkTheme from './themes/darkTheme'
 import lightTheme from './themes/lightTheme'
@@ -16,11 +17,18 @@ const ThemeButton = styled.button`
   background: black;
 `
 
+const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
+`
+
 function App() {
   const [isDarkTheme, setIsDarkTheme] = useState(true)
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <Title>styled-component</Title>
       <ThemeButton onClick={() => setIsDarkTheme(!isDarkTheme)}>{isDarkTheme ? '🌙' : '☀️'}</ThemeButton>
       <Router>
         <Nav />
@@ -29,7 +37,7 @@ function App() {
             <AboutPage/>
           </Route>
           <Route path="/">
-             <MainPage />
+            <MainPage />
           </Route>
         </Switch>
       </Router>
