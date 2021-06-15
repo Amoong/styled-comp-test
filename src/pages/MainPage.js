@@ -12,25 +12,18 @@ const MainPageContainer = styled.div`
   }}
 `
 
-const Button = styled.button`
-  width: 100px;
-  height: 50px;
-  ${({ theme }) => {
-    const { colors } = theme
-
-    return css`
-      background-color: ${colors.buttonBackground1};
-      color: ${colors.text1};
-    `
-  }}
+const Title = styled.h1`
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 `
 
 function MainPage() {
   return (<MainPageContainer>
-    <h1>Main Page</h1>
-    <Button>
-      버튼 1
-    </Button>
+    <Title>Main Page</Title>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, earum!
+    </p>
   </MainPageContainer>
   )
 }
