@@ -12,15 +12,24 @@ const AboutContainer = styled.div`
   }}
 `
 
+// 재사용 할 속성들을 정의 가능
+const underline = css`
+  text-decoration: underline;
+`
+
 const Title = styled.h1`
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 20px;
+
+  ${underline}
 `
 
 const Contents = styled.p`
   color: ${(props) => props.color};
   ${(props) => { console.log(props)}}
+  
+  ${underline}
 `
 
 function About() {
