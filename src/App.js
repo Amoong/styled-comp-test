@@ -1,69 +1,41 @@
-import { useState } from 'react' 
-import styled, { ThemeProvider, css } from 'styled-components'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
-import GlobalStyles from './GlobalStyles'
+import { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import GlobalStyles from "./GlobalStyles";
 
-import darkTheme from './themes/darkTheme'
-import lightTheme from './themes/lightTheme'
+import InnerPage from "./InnerPage";
 
-import Nav from './Nav'
-import AboutPage from './pages/AboutPage'
-import MainPage from './pages/MainPage'
+import darkTheme from "./themes/darkTheme";
+import lightTheme from "./themes/lightTheme";
 
-const ThemeButton = styled.button`
-  height: 50px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  
-  ${({ theme, size }) => {
-    const { colors: { buttonBackground1, buttonText1 } } = theme
-    let width;
-    switch (size) {
-      case 'small':
-        width = '50px'
-        break
-      case 'medium':
-        width = '100px'
-        break
-      case 'big':
-      default:
-        width = '150px'
-        break
-    }
-
-    return css`
-      width: ${width};
-      color: ${buttonText1};
-      background-color: ${buttonBackground1};
-    `
-  }}
-`
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  /* h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: ${props => props.theme.textColor1};
+  } */
+`;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 3rem;
   margin-bottom: 20px;
-`
+  color: ${props => props.theme.textColor1};
+`;
 
 function App() {
-  const [isDarkTheme, setIsDarkTheme] = useState(true)
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <Title>styled-component</Title>
-      <ThemeButton size="small" onClick={() => setIsDarkTheme(!isDarkTheme)}>{isDarkTheme ? '🌙' : '☀️'}</ThemeButton>
-      <Router>
-        <Nav />
-        <Switch>
-          <Route path="/about">
-            <AboutPage/>
-          </Route>
-          <Route path="/">
-            <MainPage />
-          </Route>
-        </Switch>
-      </Router>
+      <AppContainer>
+        <Title>styled-component</Title>
+        <button onClick={() => setIsDarkTheme(!isDarkTheme)}>change theme</button>
+        <InnerPage />
+      </AppContainer>
     </ThemeProvider>
   );
 }
